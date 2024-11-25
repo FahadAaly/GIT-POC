@@ -3,10 +3,8 @@ import InputField from "../InputField/InputField";
 import { validateUrl } from "@/app/util/common";
 import styles from "./CloneRepo.module.css";
 import Button from "../Button/Button";
-import { useRouter } from "next/navigation";
 
 const CloneRepo = () => {
-  const router = useRouter();
   const { formContainer } = styles;
   const [formData, setFormData] = useState({
     repoUrl: "",
