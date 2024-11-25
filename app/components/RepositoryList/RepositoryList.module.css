@@ -1,0 +1,40 @@
+/* Container for the dropdown */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  /* Label styling */
+  .label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  /* Dropdown styling */
+  .dropdown {
+    width: 300px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Change border color on focus */
+  .dropdown:focus {
+    border-color: #0070f3;
+    outline: none;
+  }
+  
+  /* Hover effect for dropdown */
+  .dropdown:hover {
+    background-color: #f3f3f3;
+  }
+  

@@ -1,0 +1,37 @@
+.submitButton {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #005bb5;
+}
+
+.button {
+  background-color: #0070f3; /* Primary color */
+  color: white; /* Text color */
+  border: none; /* Remove default borders */
+  padding: 10px 20px; /* Add padding for better click area */
+  margin: 0 10px; /* Spacing between buttons */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Increase font size */
+  cursor: pointer; /* Add pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Change background color on hover */
+.button:hover {
+  background-color: #005bb5; /* Slightly darker shade */
+}
+
+/* Change button appearance when focused */
+.button:focus {
+  outline: 2px solid #ffffff; /* Add white outline for accessibility */
+  outline-offset: 2px;
+}

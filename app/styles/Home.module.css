@@ -1,0 +1,35 @@
+/* styles/Home.module.css */
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
