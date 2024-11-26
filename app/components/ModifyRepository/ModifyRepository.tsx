@@ -30,11 +30,24 @@ const ModifyRepo = () => {
   // Fetch all files in the repository
   useEffect(() => {
     const fetchFiles = async () => {
-      const response = await fetch(
-        `/api/list-files?repoName=${repo}&owner=${owner}`
-      );
-      const data = await response.json();
-      setFiles(data.files || []);
+      try {
+        const response = await fetch(
+          `/api/list-files?repoName=${repo}&owner=${owner}`
+        );
+
+        // Check if response exists and is valid
+        if (!response || !response.ok) {
+          const errorData = response ? await response.json() : {};
+          throw new Error(errorData.error || "Failed to fetch files.");
+        }
+
+        // Parse the response JSON
+        const data = await response.json();
+        setFiles(data.files || []);
+      } catch (error) {
+        console.error("Error fetching files:", error); // Log the error
+        setFiles([]); // Reset state to an empty array on error
+      }
     };
 
     if (repo && owner) fetchFiles();
@@ -42,11 +55,25 @@ const ModifyRepo = () => {
 
   // Fetch the content of the selected file
   const fetchFileContent = async (filePath: string) => {
-    const response = await fetch(
-      `/api/get-file-content?repoName=${repo}&owner=${owner}&fileName=${filePath}`
-    );
-    const data = await response.json();
-    setFileContent(data.content || "");
+    try {
+      const response = await fetch(
+        `/api/get-file-content?repoName=${repo}&owner=${owner}&fileName=${filePath}`
+      );
+
+      console.log("Fetch Response:", response); // Debugging log
+
+      if (!response || !response.ok) {
+        const errorData = response ? await response.json() : {};
+        console.error("Error Response Data:", errorData); // Debugging log
+        throw new Error(errorData.error || "Failed to fetch file content.");
+      }
+
+      const data = await response.json();
+      setFileContent(data.content || "");
+    } catch (error) {
+      console.error("Error fetching file content:", error);
+      setFileContent("");
+    }
   };
 
   const renderFileOptions = (nodes: FileNode[], level = 0): JSX.Element[] => {
@@ -149,6 +176,7 @@ const ModifyRepo = () => {
             value={fileContent}
             onChange={(e) => setFileContent(e.target.value)}
             className={styles.textarea}
+            aria-label="File content"
           ></textarea>
           <InputField
             label="Commit message:"
