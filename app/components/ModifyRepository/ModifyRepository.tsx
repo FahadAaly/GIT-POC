@@ -18,8 +18,8 @@ const ModifyRepo = () => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const repo = searchParams.get("repo"); // Get the selected repository from query params
-  const owner = searchParams.get("owner");
+  const repo = searchParams?.get("repo"); // Get the selected repository from query params
+  const owner = searchParams?.get("owner");
 
   const [files, setFiles] = useState<FileNode[]>([]);
   const [selectedFile, setSelectedFile] = useState(""); // Selected file
@@ -78,6 +78,7 @@ const ModifyRepo = () => {
     const fileName = event.target.value;
     setSelectedFile(fileName);
     fetchFileContent(fileName); // Fetch content of the selected file
+    setStatus("");
   };
 
   // Handle file commit
@@ -108,11 +109,15 @@ const ModifyRepo = () => {
       const data = await response.json();
       if (response.ok) {
         setStatus("Changes committed successfully!");
+        setSelectedFile("");
+        setCommitMessage("");
       } else {
         setStatus(`Error: ${data.error}`);
       }
-    } catch (error) {
-      setStatus("Error committing changes.");
+    } catch (error: unknown) {
+      if (error) {
+        setStatus("Error committing changes.");
+      }
     }
   };
 
